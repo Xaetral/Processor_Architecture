@@ -23,8 +23,11 @@ This can be done in all sorts of different ways that are only limited to your im
 
 ## 3. Data and Programs
 
-As previously mentioned, a processor performs operations on given numbers and those operations may differ depending on the same or other given numbers.
+As previously mentioned, a processor performs operations on given numbers and the nature, order and amount of those operations may differ depending on the same or other given numbers.
 
 So the third property required for being a processor is to be able to be told what operation to do in which case.  
 This is done by giving to the processor another set of numbers as its input and to differentiate them we call the set of numbers being processed "data" and the set of numbers defining the behavior of the processor "program".
 
+For the sake of simplicity in the following chapters we will only consider the most common way programs are made: an ordered list of instructions with each instruction being a single number.
+
+## 4. Executing a Program
