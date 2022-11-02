@@ -28,6 +28,55 @@ As previously mentioned, a processor performs operations on given numbers and th
 So the third property required for being a processor is to be able to be told what operation to do in which case.  
 This is done by giving to the processor another set of numbers as its input and to differentiate them we call the set of numbers being processed "data" and the set of numbers defining the behavior of the processor "program".
 
-For the sake of simplicity in the following chapters we will only consider the most common way programs are made: an ordered list of instructions with each instruction being a single number.
+For the sake of simplicity in the following chapters we will only consider the most common way programs are structured: an ordered list of instructions with each instruction being a single number.
 
 ## 4. Executing a Program
+
+Following the 3 mandatory principles stated in the previous chapters, a processor requires 3 parts to be able to execute code:
+- The program memory
+- The instruction decoder
+- The program counter
+
+### 4.1. Program Memory
+
+The program memory is the component holding the program to be executed by the processor, in modern architectures the code is usually copied from a slow non-volatile memory to a fast volatile memory before being executed on the later.  
+This component has one number as input which is called the address, referring to the unique identifier of the instruction that has to be currently executed.  
+It also has one number as output called the instruction, which is just the content of the memory at the given address.
+
+### 4.2. Instruction Decoder
+
+The instruction decoder translates the given instruction into a whole lot of signals that are controlling the entire processor.  
+So it has one input for the instruction to be decoded and has many outputs directly defined by the exact value of the instruction and often other signals from the processor.
+
+### 4.3. Program Counter
+
+The program counter is in charge of computing the next program address, it has to be able to add one to the current address, load a completely arbitrary one, and many more features if so desired. In any case this component is (like most other components) under the direct order of the instruction decoder.
+
+## 5. Actual Computing
+
+Being able to run through a program is not enough to be able to be a processor, although it has already lots of usages (like in a Jacquard machine for example).  
+As already mentioned the processor has to perform operations on given numbers so we are still missing a few components:
+- The registers and I/O
+- The arithmetic and logic unit, often referred to as the "ALU"
+- The databus(es)
+
+### 5.1. Registers and I/O
+
+Registers are a core component of many parts of a processor but this chapter only refers to the ones that are directly usable by the program.  
+A register is a component that holds a single value and is able to register another one if required so.  
+The program will use them to memorise data during the processing but since we also need to be able to read input numbers and write output numbers, we can use a trick to simplify the architecture by simply "splitting open" a register.  
+The idea is to just wire the output of the register to an output of the processor and wire an input of the processor to what was supposed to be the output of the register internally, thus reading this register will in reality read the input of the processor and writing to this register will save and output that value to the output of the processor.
+
+### 5.2. Arithmetic and Logic Unit
+
+Once again, the processor has to process numbers and perform operations on them, thus the ALU is a collection of many different types of operations in a single part.  
+This is obviously not mandatory but it helps having a clean and easily understandable architecture.
+A typical ALU needs nothing more than:
+- 2 inputs for operations requiring 2 operands (like addition and multiplication) though it may use only one of them for operations requiring only 1 operand (like negation)
+- 1 input to select the required operation
+- 1 ouput to give out the result of the operation
+
+### 5.3. Databus
+
+A databus in itself is nothing but a part that routes numbers from/to other parts of the processor, as such it can be viewed as a big selector switch.  
+Only writing on the databus has to be monitored but as many parts as needed may read from it.
