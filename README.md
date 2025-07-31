@@ -8,7 +8,7 @@ You may think that a processor is built from transistors and logic gates, but th
 To fully explain the whole picture we need another level of abstraction.  
 
 When it comes to processors and similar modern components, you often hear the term "digital".  
-This hints us what they are really made out of: digits, that numbers are made out of.  
+This hints us what they are really made out of: numbers, themselves composed of digits.  
 
 So that is the essence of a processor right here: you shove numbers into a processor and it outputs new ones, this is why you also come across the term "computer" because at the end, all it does is applying various computations (we commonly prefer the term "operations") onto a set of numbers.  
 
